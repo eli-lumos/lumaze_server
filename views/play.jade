@@ -1,0 +1,44 @@
+html
+    head
+        title Lumaze
+        script( src="js/server.js" )
+        script( src="js/play.js" )
+        link( rel="stylesheet" href="css/styles.css" )
+        
+body
+    div( id="gameDiv" )
+        h1( id="levelText" )
+            =user.username + " - Level " + user.score + " Lumite"
+        div( id="scoreText" )
+            ="Points earned today: " + user.scoreToday + " " + ( user.scoreToday < 15 ? "You can still earn " + ( 15 - user.scoreToday ) + " more." : "You've maxed out your points for today!")
+        br
+        | This is an honor system! Don't give yourself credit without actually playing.
+        br
+        | To play the mobile version of a game, find the link to it #[a( href="https://games.lumosity.com/unity/builds/") here].
+
+        br
+        br
+        h2
+            | Games
+        - for ( var gameId in games ) {
+            - var game = games[gameId];
+            - var playCount = user.getGamePlayCountToday( gameId );
+            - var divId = "gameScoreText-"+gameId;
+            h3
+                =game.name
+            div( id="gameShortScoreText-"+gameId )
+                ="Times played today:" + playCount + " Points earned today: " + ( playCount <= 0 ? 0 : playCount + 1 )
+            - if ( user.scoreToday >= 15 ) {
+                div( id=divId ) You maxed out your score today! Playing any game is only for extra credit.
+            - } else if ( user.scoreToday >= 14 ) {
+                div( id=divId ) Your score is almost maxed out! All games are only worth 1 point.
+            - } else if ( playCount <= 0 ) {
+                div( id=divId ) This will be your first play today. It will earn you 2 points!
+            - } else {
+                div( id=divId ) You already played this game today, so playing it will earn you 1 point.
+            - }
+            br
+            input(type="button" value="Play on web" onclick="playWeb(\"" + user.username + "\", \"" + gameId + "\", \"" + game.url + "\")")
+            | &nbsp;
+            input(type="button" value="Take credit for a play" onclick="givePlayCredit(\"" + user.username + "\", \"" + gameId + "\")")
+        - }

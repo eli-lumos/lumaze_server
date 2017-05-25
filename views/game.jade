@@ -1,0 +1,69 @@
+html
+    head
+        title Stocking Quest
+        script( src="js/server.js" )
+        script( src="js/game.js" )
+        link( rel="stylesheet" href="css/styles.css" )
+        
+body( onload="game.start( " + JSON.stringify( params ) + ")")
+    div( id="gameDiv" )
+        h1
+            =params.user.username + " - Level " + Math.floor( Math.random() * 100 + 10 ) + " Adventurer"
+        table( class="screenwidth" )
+            tr
+                td
+                    table( width="100%" )
+                        tr
+                            td( width="33%" style="border:1px solid #aaa" )
+                                center
+                                    table( style="text-align: center;" )
+                                        tr
+                                            td
+                                                input( type="button" value="search" onclick="game.search()" )
+                                        tr
+                                            td
+                                                input( type="button" value="attack" onclick="game.attack()" )
+                            td( width="34%" style="border:1px solid #aaa" )
+                                center
+                                    table
+                                        tr
+                                            td
+                                                img( src="images/spacer.png" width="50" height="50" )
+                                            td( id="direction_n" width="50" )
+                                            td
+                                                img( src="images/spacer.png" width="50" height="50" )
+                                        tr
+                                            td( id="direction_w" style="text-align: right;")
+                                            td( width="50" )
+                                                img( src="images/compass.png" width="50" height="50" )
+                                            td( id="direction_e" style="text-align: left;" )
+                                        tr
+                                            td
+                                                img( src="images/spacer.png" width="50" height="50" )
+                                            td( id="direction_s" width="50" )
+                                            td
+                                                img( src="images/spacer.png" width="50" height="50" )
+                            td( width="33%" style="border:1px solid #aaa" )
+                                center
+                                    table( style="text-align: center;" )
+                                        tr
+                                            td
+                                                select( id="inventory" )
+                                        tr
+                                            td
+                                                input( type="button" value="give to:" onclick="game.giveItem()" )
+                                        tr
+                                            td
+                                                select( id="userList" )
+                                                    - var players = [ "zac", "will", "anya", "maman", "dhomas", "laura", "megs", "eli" ];
+                                                    - for ( var playerIndex = 0; playerIndex < players.length; playerIndex++ ) {
+                                                        - if ( players[ playerIndex ] !== params.user.username ) {
+                                                            option
+                                                                =players[playerIndex]
+                                                        - }
+                                                    - }
+            tr
+                td( style="vertical-align: top; font-size:20px; border:1px solid #aaa" )
+                    div( id="roomDescription" )
+                    div( id="feedbackText" )
+                    div( id="victory" )

@@ -1,0 +1,17 @@
+html
+    head
+        title Lumaze
+        script(src="js/navigation.js")
+        link( rel="stylesheet" href="css/styles.css" )
+body
+    h1 Lumaze
+    p
+        | Welcome to the Lumaze! 
+    h3 Who are you? Select your name to get started. You won't have to do it again.
+    p
+    select(id="usernameSelect")
+        - for ( var userIndex = 0; userIndex < users.length; userIndex++ ) {
+            option( value=users[userIndex] )
+                = users[userIndex]
+        - }
+    input(type="button" value="Play!" onclick="beginGame()")
