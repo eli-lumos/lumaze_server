@@ -11,7 +11,9 @@ body( onload="playPageLoaded()" )
     - if ( user ) {
         div( id="gameDiv" )
             h1( id="levelText" )
-                =user.username + " - Level " + user.score + " Lumite"
+                =user.username + " - Level " + user.score
+            b
+                ="District " + ( teams[user.username].district + 1 ) + ", Team " + String.fromCharCode( "A".charCodeAt( 0 ) + teams[user.username].team )
             div( id="scoreText" )
                 ="Points earned today: " + user.scoreToday + " " + ( user.scoreToday < 15 ? "You can still earn " + ( 15 - user.scoreToday ) + " more." : "You maxed out your points for today!")
             br

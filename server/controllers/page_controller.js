@@ -32,7 +32,7 @@ var PageController = module.exports =
         {
             var userModel = new UserModel( request.query.username, function( user )
             {
-                response.render( "play", { user: user, games: constants.games } );
+                response.render( "play", { user: user, games: constants.games, teams: constants.getPlayerTeamMap() } );
             }.bind(this));
         }
     },

@@ -31,6 +31,11 @@ var Constants = module.exports =
         {
             name: "Pirate Passage",
             url: "https://risk.lumoslabs.com/app/v4/games/pirate-passage"
+        },
+        "word-snatchers":
+        {
+            name: "Word Snatchers",
+            url: "https://www.lumosity.com/app/v4/games/word-snatchers"
         }
     },
     
@@ -122,7 +127,7 @@ var Constants = module.exports =
                     name: "Team B",
                     players:
                     [
-                        "helen",
+                        "kevin",
                         "alan",
                         "aliz",
                         "brandon k",
@@ -157,7 +162,7 @@ var Constants = module.exports =
                         "brittany b",
                         "connie",
                         "sameer",
-                        "kevin"
+                        "helen"
                     ]
                 }
             ]
