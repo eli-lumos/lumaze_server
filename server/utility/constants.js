@@ -15,7 +15,7 @@ var Constants = module.exports =
         "trading-up":
         {
             name: "Trading Up",
-            url:"https://developer.cloud.unity3d.com/share/W1gi76si-8z/"
+            url:"https://developer.cloud.unity3d.com/share/bJlmDxM2-UM/"
         },
         "carnival-probability":
         {
