@@ -14,7 +14,7 @@ var Constants = module.exports =
     {
         "trading-up":
         {
-            name: "Trading Up",
+            name: "Top That",
             url:"https://developer.cloud.unity3d.com/share/bJlmDxM2-UM/"
         },
         "carnival-probability":
