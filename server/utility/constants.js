@@ -296,6 +296,7 @@ var Constants = module.exports =
         if ( !this.players )
         {
             this.players = [];
+            this.playerMap = {};
             
             var districtIndex;
             for ( districtIndex = 0; districtIndex < this.districts.length; districtIndex++ )
@@ -309,6 +310,7 @@ var Constants = module.exports =
                     for ( playerIndex = 0; playerIndex < team.players.length; playerIndex++ )
                     {
                         var player = team.players[playerIndex];
+                        this.playerMap[player] = { district: districtIndex, team: teamIndex };
                         this.players.push(player);
                     }
                 }
@@ -318,6 +320,12 @@ var Constants = module.exports =
         }
         
         return this.players;
+    },
+    
+    getPlayerTeamMap: function()
+    {
+        this.getPlayers(); //does the work
+        return this.playerMap;
     },
     
     //milliseconds, if a heartbeat has not been sent in this much time, you are considered offline

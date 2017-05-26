@@ -1,9 +1,10 @@
 html
     head
         title Lumaze
+        script(src="js/cookies.js")
         script(src="js/navigation.js")
         link( rel="stylesheet" href="css/styles.css" )
-body
+body( onload="homePageLoaded()" )
     h1 Lumaze
     p
         | Welcome to the Lumaze! 

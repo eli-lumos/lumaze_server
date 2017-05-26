@@ -1,0 +1,56 @@
+//shows either team or individual scores, depending on the params passed in
+//expects a score array with objects containing all the score information
+html
+    head
+        title
+            = "Lumaze " + ( params.includeUsers ? "Individual" : "Team" ) + " Standings"
+        link( rel="stylesheet" href="css/styles.css" )
+        style.
+            td{padding: 0px 20px;}
+body
+    h2
+        = ( params.includeUsers ? "Individual Scores" : "District and Team Scores" )
+    a( href=(params.includeUsers ? "teamScores" : "scores"))
+        = ( params.includeUsers ? "District and Team Scores" : "Individual Scores" )
+    | &nbsp;
+    a( href="play") Back to game
+    br
+    br
+    table
+        tr
+            td 
+                h3 Rank
+            td
+                h3 Name
+            - if ( params.includeUsers ) {
+                td
+                    h3 District
+                td
+                    h3 Team
+            - }
+            td
+                h3 Score
+            - if ( params.includeUsers ) {
+            td
+                h3 Score Today
+            - }
+        - for ( var scoreIndex = 0; scoreIndex < scores.length; scoreIndex++ ) {
+        -   var scoreObj = scores[ scoreIndex ];
+            tr
+                td
+                    = ( ( scoreObj.rank || 0 ) + 1 )
+                td
+                    = scoreObj.username
+                - if ( params.includeUsers ) {
+                    td
+                        = "District " + ( scoreObj.district + 1 )
+                    td
+                        = "Team " + String.fromCharCode( "A".charCodeAt( 0 ) + scoreObj.team )
+                - }
+                td
+                    = ( scoreObj.score || 0 )
+                - if ( params.includeUsers ) {
+                td
+                    = ( scoreObj.scoreToday || 0 )
+                - }
+        - }

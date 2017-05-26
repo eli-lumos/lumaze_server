@@ -16,7 +16,7 @@ var DatabaseController = module.exports =
     
     set: function( request, response )
     {
-        database.set( request.query.key, request.key.value, function( success )
+        database.set( request.query.key, request.query.value, function( success )
         {
             response.status( success ? 200 : 500 ).json( { success: success } );
         });

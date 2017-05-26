@@ -61,14 +61,25 @@ UserModel.prototype.save = function( cb )
 //refreshes this object's values based upon what's in the database
 UserModel.prototype.load = function( cb )
 {
-    database.writeJsonToObject( this.getDatabaseKey(), this, cb );
-    
-    var today = constants.getDay();
-    if ( today !== this.lastDayPlayed )
+    database.writeJsonToObject( this.getDatabaseKey(), this, function()
     {
-        this.lastDayPlayed = today;
-        this.scoreToday = 0;
-    }
+        var today = constants.getDay();
+        if ( today !== this.lastDayPlayed )
+        {
+            console.log( "Today doesn't equal the last time played for " + this.username );
+            this.lastDayPlayed = today;
+            this.scoreToday = 0;
+            console.log( "score today is now " + this.scoreToday );
+        }
+        else
+        {
+            console.log( "Today is: " + today + " and last day played is " + this.lastDayPlayed + " for " + this.username );
+        }
+        
+        cb();
+    }.bind(this));
+    
+    
 };
 
 UserModel.prototype.remove = function( cb )

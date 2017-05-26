@@ -28,8 +28,6 @@ var givePlayCredit = function( username, gameId )
                 var playCount = playsToday[gameId];
                 var gameText = "";
                 
-                //NEXT - this isn't working right, it's appending. What?
-                //also, I probably just want data and less English
                 if ( user.scoreToday >= 15 )
                 {
                     gameText = "You maxed out your score today! Playing any game is only for extra credit.";
@@ -68,3 +66,4 @@ var playWeb = function( username, gameId, url )
     window.open( url );
     givePlayCredit( username, gameId );
 };
+
