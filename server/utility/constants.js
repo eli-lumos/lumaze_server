@@ -15,17 +15,17 @@ var Constants = module.exports =
         "trading-up":
         {
             name: "Trading Up",
-            url:"https://developer.cloud.unity3d.com/share/ZylWfVSTlIz/"
+            url:"https://developer.cloud.unity3d.com/share/W1gi76si-8z/"
         },
         "carnival-probability":
         {
             name: "Carnival Probability",
-            url: "https://developer.cloud.unity3d.com/share/bye-xuIgxUG/"
+            url: "https://developer.cloud.unity3d.com/share/Z1eXUnBalLz/"
         },
         "halve-your-cake":
         {
             name: "Halve Your Cake",
-            url: "https://developer.cloud.unity3d.com/share/b1VsnVeg8f/"
+            url: "https://developer.cloud.unity3d.com/share/-JgJYhKgbLG/"
         },
         "pirate-passage":
         {
