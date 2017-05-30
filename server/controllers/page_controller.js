@@ -116,7 +116,6 @@ var PageController = module.exports =
                 scores.push( scoreData );
             }
             
-            console.log( "scores: " + JSON.stringify( scores ) );
             response.render( "scores", { params: params, scores: scores } );
         }.bind(this);
         

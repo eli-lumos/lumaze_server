@@ -66,14 +66,8 @@ UserModel.prototype.load = function( cb )
         var today = constants.getDay();
         if ( today !== this.lastDayPlayed )
         {
-            console.log( "Today doesn't equal the last time played for " + this.username );
             this.lastDayPlayed = today;
             this.scoreToday = 0;
-            console.log( "score today is now " + this.scoreToday );
-        }
-        else
-        {
-            console.log( "Today is: " + today + " and last day played is " + this.lastDayPlayed + " for " + this.username );
         }
         
         cb();

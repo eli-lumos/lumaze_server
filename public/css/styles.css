@@ -52,3 +52,8 @@ h3 {
     width: 98vw;
     /*max-width: 800px;*/
 }
+
+td {
+    padding-right: 30px;
+    padding-left: 30px;
+}
