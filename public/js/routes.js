@@ -8,6 +8,7 @@ var routes =
     "user/reset": { params: [ "username" ], color: "#cc3333", backgroundColor: "#ff9999", showWarning: true },
     "user/heartbeat": { params: [ "username" ] },
     "user/game/play": { params: [ "username", "gameId" ] },
+    "global/feature": { params: ["gameId"] },
     "database/get" : { params: [ "key" ] },
     "database/set" : { params: [ "key", "value" ], color: "#cc3333", backgroundColor: "#ff9999", showWarning: true },
     "database/clear" : { params: [], color: "#cc3333", backgroundColor: "#ff9999", showWarning: true },

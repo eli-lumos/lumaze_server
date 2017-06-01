@@ -104,13 +104,22 @@ UserModel.prototype.getPlaysToday = function()
     return this.plays[today];
 };
 
-UserModel.prototype.playGame = function( gameId )
+UserModel.prototype.playGame = function( gameId, featuredGameId )
 {
     var playsToday = this.getPlaysToday();
     if ( playsToday[gameId] === undefined )
     {
         playsToday[gameId] = 0;
     }
+    
+    var gameData = constants.games[gameId];
+    
+    //we can't add points if we already maxed this game out
+    if ( gameData.maximumPlaysPerDay && playsToday[gameId] >= gameData.maximumPlaysPerDay )
+    {
+        return 0;
+    }
+    
     playsToday[gameId]++;
     
     var addedScore = constants.pointsPerPlay;
@@ -118,6 +127,16 @@ UserModel.prototype.playGame = function( gameId )
     if ( playsToday[gameId] === 1 )
     {
         addedScore += constants.pointsPerFirstPlay;
+    }
+    
+    if ( gameData.scoreBonus )
+    {
+        addedScore += gameData.scoreBonus;
+    }
+    
+    if ( gameId === featuredGameId )
+    {
+        addedScore += constants.pointsForFeaturedGame;
     }
     
     //we can't add any more points if we're reached our maximum per day

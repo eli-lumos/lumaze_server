@@ -4,11 +4,17 @@
 
 var givingPlayCredit = false;
 
-var givePlayCredit = function( username, gameId )
+
+var givePlayCredit = function( username, playedGameId )
 {
+    if ( givingPlayCredit )
+    {
+        return;
+    }
+    
     givingPlayCredit = true;
     
-    server.playGame( username, gameId, function( result )
+    server.playGame( username, playedGameId, function( result )
     {
         var scoreText = document.getElementById( "scoreText" );
         if ( !result.success )
@@ -18,36 +24,51 @@ var givePlayCredit = function( username, gameId )
         else 
         {
             var user = result.user;
-            document.getElementById( "levelText" ).innerHTML = user.username + " - Level " + user.score + " Lumite";
-            scoreText.innerHTML = "Points earned today: " + user.scoreToday + "<br/>" + ( user.scoreToday < 15 ? "You can still earn " + ( 15 - user.scoreToday ) + " more." : "You've maxed out your points for today!");
+            document.getElementById( "levelText" ).innerHTML = user.username + " - Level " + user.score;
+            scoreText.innerHTML = "Points earned today: " + user.scoreToday + " / 15";
             
             var playsToday = result.userPlaysToday;
             var gameId;
-            for ( gameId in playsToday )
+            for ( gameId in result.games )
             {
-                var playCount = playsToday[gameId];
+                var playCount = playsToday[gameId] || 0;
                 var gameText = "";
+                var possibleScore = 1;
+                var gameData = result.games[gameId];
+                var textElement = document.getElementById( "gameScoreText-" + gameId );
                 
-                if ( user.scoreToday >= 15 )
+                if ( user.scoreToday >= 15 || ( gameData.maximumPlaysPerDay && playCount >= gameData.maximumPlaysPerDay ) )
                 {
-                    gameText = "You maxed out your score today! Playing any game is only for extra credit.";
-                }
-                else if ( user.scoreToday >= 14 )
-                {
-                    gameText = "Your score is almost maxed out! All games are only worth 1 point.";
-                }
-                else if ( playCount <= 0 )
-                {
-                    gameText = "This will be your first play today. It will earn you 2 points!";
+                    possibleScore = 0;
                 }
                 else
                 {
-                    gameText = "You already played this game today, so playing it will earn you 1 point.";
+                    if ( playCount <= 0 )
+                    {
+                        possibleScore = 2;
+                    }
+                    else
+                    {
+                        possibleScore = 1;
+                    }
+                    
+                    if ( textElement.getAttribute("featured") === "true" )
+                    {
+                        possibleScore++;
+                    }
+                    
+                    if ( gameData.scoreBonus )
+                    {
+                        possibleScore += gameData.scoreBonus;
+                    }
                 }
                 
-                document.getElementById( "gameScoreText-" + gameId ).innerHTML = gameText;
+                possibleScore = Math.min( possibleScore, 15 - user.scoreToday );
+                gameText = "Points per play: " + possibleScore;
                 
-                var shortGameText = "Times played today:" + playCount;
+                textElement.innerHTML = gameText;
+                
+                var shortGameText = "Times played today: " + playCount;
                 document.getElementById( "gameShortScoreText-" + gameId ).innerHTML = shortGameText;
             }
         }

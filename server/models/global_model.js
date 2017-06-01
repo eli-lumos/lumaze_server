@@ -28,5 +28,15 @@ var GlobalModel = module.exports =
         userOrUsername = userOrUsername.username || userOrUsername;
         
         database.removeFromList( constants.usersKey, userOrUsername, cb );
+    },
+    
+    setFeaturedGame: function( gameId, cb )
+    {
+        database.set( constants.featuredGameKey, gameId, cb );
+    },
+    
+    getFeaturedGame: function( cb )
+    {
+        database.get( constants.featuredGameKey, cb );
     }
 };

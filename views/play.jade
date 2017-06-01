@@ -15,7 +15,7 @@ body( onload="playPageLoaded()" )
             b
                 ="District " + ( teams[user.username].district + 1 ) + ", Team " + String.fromCharCode( "A".charCodeAt( 0 ) + teams[user.username].team )
             div( id="scoreText" )
-                ="Points earned today: " + user.scoreToday + " " + ( user.scoreToday < 15 ? "You can still earn " + ( 15 - user.scoreToday ) + " more." : "You maxed out your points for today!")
+                ="Points earned today: " + user.scoreToday + " / 15"
             br
             | This is an honor system! Do not give yourself credit without actually playing.
             br
@@ -29,26 +29,61 @@ body( onload="playPageLoaded()" )
                 a( href="teamScores" ) District and Team Scores
             h2
                 | Games
-            - for ( var gameId in games ) {
+
+            - var gameCount = 0;
+            - var showGame = function( gameId ) {
+                - var isFeatured = featuredGame === gameId;
                 - var game = games[gameId];
                 - var playCount = user.getGamePlayCountToday( gameId );
-                - var divId = "gameScoreText-"+gameId;
-                h3
-                    =game.name
-                div( id="gameShortScoreText-"+gameId )
-                    ="Times played today:" + playCount
-                - if ( user.scoreToday >= 15 ) {
-                    div( id=divId ) You maxed out your score today! Playing any game is only for extra credit.
-                - } else if ( user.scoreToday >= 14 ) {
-                    div( id=divId ) Your score is almost maxed out! All games are only worth 1 point.
-                - } else if ( playCount <= 0 ) {
-                    div( id=divId ) This will be your first play today. It will earn you 2 points!
-                - } else {
-                    div( id=divId ) You already played this game today, so playing it will earn you 1 point.
+                - gameCount++;
+                - var gameBoxStyle = isFeatured ? "featuredGameBox" : (gameCount % 2 === 0 ? "evenGameBox" : "oddGameBox");
+                div( class=gameBoxStyle )
+                    h3
+                        =game.name
+                    - if ( isFeatured ) {
+                        h4 FEATURED
+                    - }
+                    div( id="gameShortScoreText-"+gameId )
+                        ="Times played today: " + playCount
+                
+                        - var possibleScore = 1;
+                        - if ( user.scoreToday >= 15 || ( game.maximumPlaysPerDay && playCount >= game.maximumPlaysPerDay ) ) {
+                            - possibleScore = 0;
+                        - }
+                        - else {
+                            - if ( playCount <= 0 ) {
+                                - possibleScore = 2;
+                            - }
+                            - else {
+                                - possibleScore = 1;
+                            - }
+                
+                            - if ( isFeatured ) {
+                                - possibleScore++;
+                            - }
+                            
+                            - if ( game.scoreBonus ) {
+                                - possibleScore += game.scoreBonus;
+                            - }
+                            
+                            - possibleScore = Math.min( possibleScore, 15 - user.scoreToday );
+                        - }
+            
+                    div( id="gameScoreText-"+gameId featured=(isFeatured ? "true" : "false") )
+                        ="Points per play: " + possibleScore
+                    br
+                    - if ( game.url ) {
+                        input(type="button" value="Play on web" onclick="playWeb(\"" + user.username + "\", \"" + gameId + "\", \"" + game.url + "\")")
+                    - }
+                    | &nbsp;
+                    input(type="button" value="Take credit for a play" onclick="givePlayCredit(\"" + user.username + "\", \"" + gameId + "\")")
+            - }
+            - if ( featuredGame ) {
+                - showGame( featuredGame );
+            - }
+            - for ( var gameId in games ) {
+                - if ( featuredGame !== gameId ) {
+                    - showGame( gameId )
                 - }
-                br
-                input(type="button" value="Play on web" onclick="playWeb(\"" + user.username + "\", \"" + gameId + "\", \"" + game.url + "\")")
-                | &nbsp;
-                input(type="button" value="Take credit for a play" onclick="givePlayCredit(\"" + user.username + "\", \"" + gameId + "\")")
             - }
     - }

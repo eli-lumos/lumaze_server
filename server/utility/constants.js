@@ -4,14 +4,23 @@ var Constants = module.exports =
 {
     usersKey: "userList",
     matchCountKey: "matchCount",
+    featuredGameKey: "featuredGame",
     
     pointsPerPlay: 1,
     //in the daily first play per game, this is added IN ADDITION TO the regular score
     pointsPerFirstPlay: 1,
+    //we can feature a game each day, it will give bonus points
+    pointsForFeaturedGame: 1,
     maximumScorePerDay: 15,
     
     games:
     {
+        "dogfood-challenge":
+        {
+            name: "Daily Dogfood Challenge",
+            scoreBonus: 2,
+            maximumPlaysPerDay: 1
+        },
         "trading-up":
         {
             name: "Top That",

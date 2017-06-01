@@ -4,6 +4,7 @@
 
 var fs = require( "fs" );
 var constants = require( "../utility/constants.js" );
+var globals = require( "../models/global_model.js" );
 var UserModel = require( "../models/user_model.js" );
 
 var PageController = module.exports =
@@ -32,7 +33,10 @@ var PageController = module.exports =
         {
             var userModel = new UserModel( request.query.username, function( user )
             {
-                response.render( "play", { user: user, games: constants.games, teams: constants.getPlayerTeamMap() } );
+                globals.getFeaturedGame( function( gameId )
+                {
+                    response.render( "play", { user: user, games: constants.games, teams: constants.getPlayerTeamMap(), featuredGame: gameId } );
+                }.bind(this));
             }.bind(this));
         }
     },

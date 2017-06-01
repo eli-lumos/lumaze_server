@@ -3,9 +3,8 @@
 /*global require*/
 
 //var database = require( "../database.js" );
-//var globalController = require( "./global_controller.js" );
-//var constants = require( "../utility/constants.js" );
-
+var globals = require( "../models/global_model.js" );
+var constants = require( "../utility/constants.js" );
 var UserModel = require( "../models/user_model.js" );
 
 var UserController = module.exports =
@@ -80,10 +79,13 @@ var UserController = module.exports =
             {
                 this._getUser( request, function( user )
                 {
-                    user.playGame( request.query.gameId );
-                    user.save( function( success )
+                    globals.getFeaturedGame( function( featuredGameId )
                     {
-                        response.status( 200 ).json( { success: success, user: user, userPlaysToday: user.getPlaysToday() } );
+                        user.playGame( request.query.gameId, featuredGameId );
+                        user.save( function( success )
+                        {
+                            response.status( 200 ).json( { success: success, user: user, userPlaysToday: user.getPlaysToday(), games: constants.games } );
+                        });
                     });
                 });
             }
