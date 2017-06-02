@@ -12,7 +12,7 @@ var Constants = module.exports =
     //we can feature a game each day, it will give bonus points
     pointsForFeaturedGame: 1,
     maximumScorePerDay: 15,
-    
+        
     games:
     {
         "dogfood-challenge":
@@ -24,17 +24,18 @@ var Constants = module.exports =
         "trading-up":
         {
             name: "Top That",
-            url:"https://developer.cloud.unity3d.com/share/bJlmDxM2-UM/"
+            //url:"https://games.lumosity.com/unity/builds/build/0842e459-d224-4d4f-a122-9db51e03083e-webgl"
+            url: "https://developer.cloud.unity3d.com/share/b1wQrM3LLf/"
         },
         "carnival-probability":
         {
             name: "Carnival Probability",
-            url: "https://developer.cloud.unity3d.com/share/Z1eXUnBalLz/"
+            url: "https://games.lumosity.com/unity/builds/build/7e8f6bff-2522-4363-9807-0c6306deed3b-webgl"
         },
         "halve-your-cake":
         {
             name: "Halve Your Cake",
-            url: "https://developer.cloud.unity3d.com/share/-JgJYhKgbLG/"
+            url: "https://games.lumosity.com/unity/builds/build/f1619976-64e5-46c6-b5c4-cd769b51434b-webgl"
         },
         "pirate-passage":
         {
@@ -45,6 +46,11 @@ var Constants = module.exports =
         {
             name: "Word Snatchers",
             url: "https://www.lumosity.com/app/v4/games/word-snatchers"
+        },
+        "report-bug":
+        {
+            name: "Give Feedback or Report Bug",
+            ignoreFirstPlayBonus: true
         }
     },
     

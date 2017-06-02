@@ -43,7 +43,7 @@ var givePlayCredit = function( username, playedGameId )
                 }
                 else
                 {
-                    if ( playCount <= 0 )
+                    if ( playCount <= 0 && !gameData.ignoreFirstPlayBonus )
                     {
                         possibleScore = 2;
                     }

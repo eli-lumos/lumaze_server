@@ -51,7 +51,7 @@ body( onload="playPageLoaded()" )
                             - possibleScore = 0;
                         - }
                         - else {
-                            - if ( playCount <= 0 ) {
+                            - if ( playCount <= 0 && !game.ignoreFirstPlayBonus ) {
                                 - possibleScore = 2;
                             - }
                             - else {

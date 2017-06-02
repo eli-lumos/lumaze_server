@@ -124,7 +124,7 @@ UserModel.prototype.playGame = function( gameId, featuredGameId )
     
     var addedScore = constants.pointsPerPlay;
     //add extra points to our score if we played for the first time today
-    if ( playsToday[gameId] === 1 )
+    if ( playsToday[gameId] === 1 && !gameData.ignoreFirstPlayBonus )
     {
         addedScore += constants.pointsPerFirstPlay;
     }
