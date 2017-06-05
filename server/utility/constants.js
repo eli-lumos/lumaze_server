@@ -42,11 +42,11 @@ var Constants = module.exports =
             name: "Pirate Passage",
             url: "https://risk.lumoslabs.com/app/v4/games/pirate-passage"
         },
-        "word-snatchers":
-        {
-            name: "Word Snatchers",
-            url: "https://www.lumosity.com/app/v4/games/word-snatchers"
-        },
+        // "word-snatchers":
+        // {
+        //     name: "Word Snatchers",
+        //     url: "https://www.lumosity.com/app/v4/games/word-snatchers"
+        // },
         "report-bug":
         {
             name: "Give Feedback or Report Bug",
