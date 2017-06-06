@@ -15,12 +15,12 @@ var Constants = module.exports =
         
     games:
     {
-        "dogfood-challenge":
-        {
-            name: "Daily Dogfood Challenge",
-            scoreBonus: 2,
-            maximumPlaysPerDay: 1
-        },
+        // "dogfood-challenge":
+        // {
+        //     name: "Daily Dogfood Challenge",
+        //     scoreBonus: 2,
+        //     maximumPlaysPerDay: 1
+        // },
         "trading-up":
         {
             name: "Top That",
