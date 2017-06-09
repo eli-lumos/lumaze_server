@@ -11,22 +11,24 @@ body( onload="playPageLoaded()" )
     - if ( user ) {
         div( id="gameDiv" )
             h1( id="levelText" )
-                =user.username + " - Level " + user.score
-            b
-                ="District " + ( teams[user.username].district + 1 ) + ", Team " + String.fromCharCode( "A".charCodeAt( 0 ) + teams[user.username].team )
+                =user.username + " - " + user.score + " points"
+            //b
+            //    ="District " + ( teams[user.username].district + 1 ) + ", Team " + String.fromCharCode( "A".charCodeAt( 0 ) + teams[user.username].team )
             div( id="scoreText" )
                 ="Points earned today: " + user.scoreToday + " / 15"
-            br
+            p
+                a( href="scores") View Scores
+                
+            //br
             | This is an honor system! Do not give yourself credit without actually playing.
             br
             | To play the mobile version of a game, find the link to it #[a( href="https://games.lumosity.com/unity/builds/") here].
             br
             | If you play the Unity WebGL version, it is recommended that you changed the Player Dimensions to iPhone 3GS Portrait.
-
-            p
-                a( href="scores") Individual Scores
-                | &nbsp;
-                a( href="teamScores" ) District and Team Scores
+            //    | &nbsp;
+            //    a( href="teamScores" ) District and Team Scores
+            br
+            br
             h2
                 | Games
 
