@@ -24,8 +24,7 @@ var Constants = module.exports =
         "trading-up":
         {
             name: "Top That",
-            //url:"https://games.lumosity.com/unity/builds/build/0842e459-d224-4d4f-a122-9db51e03083e-webgl"
-            url: "https://developer.cloud.unity3d.com/share/b1wQrM3LLf/"
+            url:"https://games.lumosity.com/unity/builds/build/0842e459-d224-4d4f-a122-9db51e03083e-webgl"
         },
         "carnival-probability":
         {
