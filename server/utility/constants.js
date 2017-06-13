@@ -304,7 +304,8 @@ var Constants = module.exports =
                         "matt d",
                         "yelena",
                         "sara c",
-                        "suélen"
+                        "suélen",
+                        "szabolcs"
                     ]
                 }
             ]
