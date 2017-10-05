@@ -39,7 +39,7 @@ var Constants = module.exports =
         "pirate-passage":
         {
             name: "Pirate Passage",
-            url: "https://risk.lumoslabs.com/app/v4/games/pirate-passage"
+            url: "https://risk.lumosity.com/app/v4/games/pirate-passage"
         },
         // "word-snatchers":
         // {
